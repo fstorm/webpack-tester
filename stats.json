@@ -1,0 +1,438 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.10.2",
+  "hash": "f1e2712fc5483cdc319d",
+  "time": 233,
+  "builtAt": 1528115687356,
+  "publicPath": "",
+  "outputPath": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/bundle",
+  "assetsByChunkName": {
+    "main": "main.js"
+  },
+  "assets": [
+    {
+      "name": "main.js",
+      "size": 8200,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        "main.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        "main.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": "main",
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 5660,
+      "names": [
+        "main"
+      ],
+      "files": [
+        "main.js"
+      ],
+      "hash": "2e11585d9ba4f250123b",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": "./node_modules/lodash.add/index.js",
+          "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/lodash.add/index.js",
+          "name": "./node_modules/lodash.add/index.js",
+          "index": 2,
+          "index2": 2,
+          "size": 4859,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "main"
+          ],
+          "issuer": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+          "issuerId": "./src/index.js",
+          "issuerName": "./src/index.js",
+          "issuerPath": [
+            {
+              "id": "./src/index.js",
+              "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+              "name": "./src/index.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/index.js",
+              "moduleIdentifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "cjs require",
+              "userRequest": "lodash.add",
+              "loc": "2:10-31"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "/**\n * lodash (Custom Build) <https://lodash.com/>\n * Build: `lodash modularize exports=\"npm\" -o ./`\n * Copyright jQuery Foundation and other contributors <https://jquery.org/>\n * Released under MIT license <https://lodash.com/license>\n * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>\n * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors\n */\n\n/** Used as references for various `Number` constants. */\nvar INFINITY = 1 / 0,\n    NAN = 0 / 0;\n\n/** `Object#toString` result references. */\nvar symbolTag = '[object Symbol]';\n\n/** Detect free variable `global` from Node.js. */\nvar freeGlobal = typeof global == 'object' && global && global.Object === Object && global;\n\n/** Detect free variable `self`. */\nvar freeSelf = typeof self == 'object' && self && self.Object === Object && self;\n\n/** Used as a reference to the global object. */\nvar root = freeGlobal || freeSelf || Function('return this')();\n\n/** Used for built-in method references. */\nvar objectProto = Object.prototype;\n\n/**\n * Used to resolve the\n * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)\n * of values.\n */\nvar objectToString = objectProto.toString;\n\n/** Built-in value references. */\nvar Symbol = root.Symbol;\n\n/** Used to convert symbols to primitives and strings. */\nvar symbolProto = Symbol ? Symbol.prototype : undefined,\n    symbolToString = symbolProto ? symbolProto.toString : undefined;\n\n/**\n * The base implementation of `_.toNumber` which doesn't ensure correct\n * conversions of binary, hexadecimal, or octal string values.\n *\n * @private\n * @param {*} value The value to process.\n * @returns {number} Returns the number.\n */\nfunction baseToNumber(value) {\n  if (typeof value == 'number') {\n    return value;\n  }\n  if (isSymbol(value)) {\n    return NAN;\n  }\n  return +value;\n}\n\n/**\n * The base implementation of `_.toString` which doesn't convert nullish\n * values to empty strings.\n *\n * @private\n * @param {*} value The value to process.\n * @returns {string} Returns the string.\n */\nfunction baseToString(value) {\n  // Exit early for strings to avoid a performance hit in some environments.\n  if (typeof value == 'string') {\n    return value;\n  }\n  if (isSymbol(value)) {\n    return symbolToString ? symbolToString.call(value) : '';\n  }\n  var result = (value + '');\n  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;\n}\n\n/**\n * Creates a function that performs a mathematical operation on two values.\n *\n * @private\n * @param {Function} operator The function to perform the operation.\n * @param {number} [defaultValue] The value used for `undefined` arguments.\n * @returns {Function} Returns the new mathematical operation function.\n */\nfunction createMathOperation(operator, defaultValue) {\n  return function(value, other) {\n    var result;\n    if (value === undefined && other === undefined) {\n      return defaultValue;\n    }\n    if (value !== undefined) {\n      result = value;\n    }\n    if (other !== undefined) {\n      if (result === undefined) {\n        return other;\n      }\n      if (typeof value == 'string' || typeof other == 'string') {\n        value = baseToString(value);\n        other = baseToString(other);\n      } else {\n        value = baseToNumber(value);\n        other = baseToNumber(other);\n      }\n      result = operator(value, other);\n    }\n    return result;\n  };\n}\n\n/**\n * Checks if `value` is object-like. A value is object-like if it's not `null`\n * and has a `typeof` result of \"object\".\n *\n * @static\n * @memberOf _\n * @since 4.0.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is object-like, else `false`.\n * @example\n *\n * _.isObjectLike({});\n * // => true\n *\n * _.isObjectLike([1, 2, 3]);\n * // => true\n *\n * _.isObjectLike(_.noop);\n * // => false\n *\n * _.isObjectLike(null);\n * // => false\n */\nfunction isObjectLike(value) {\n  return !!value && typeof value == 'object';\n}\n\n/**\n * Checks if `value` is classified as a `Symbol` primitive or object.\n *\n * @static\n * @memberOf _\n * @since 4.0.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.\n * @example\n *\n * _.isSymbol(Symbol.iterator);\n * // => true\n *\n * _.isSymbol('abc');\n * // => false\n */\nfunction isSymbol(value) {\n  return typeof value == 'symbol' ||\n    (isObjectLike(value) && objectToString.call(value) == symbolTag);\n}\n\n/**\n * Adds two numbers.\n *\n * @static\n * @memberOf _\n * @since 3.4.0\n * @category Math\n * @param {number} augend The first number in an addition.\n * @param {number} addend The second number in an addition.\n * @returns {number} Returns the total.\n * @example\n *\n * _.add(6, 4);\n * // => 10\n */\nvar add = createMathOperation(function(augend, addend) {\n  return augend + addend;\n}, 0);\n\nmodule.exports = add;\n"
+        },
+        {
+          "id": "./node_modules/webpack/buildin/global.js",
+          "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/webpack/buildin/global.js",
+          "name": "(webpack)/buildin/global.js",
+          "index": 3,
+          "index2": 1,
+          "size": 489,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "main"
+          ],
+          "issuer": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/lodash.add/index.js",
+          "issuerId": "./node_modules/lodash.add/index.js",
+          "issuerName": "./node_modules/lodash.add/index.js",
+          "issuerPath": [
+            {
+              "id": "./src/index.js",
+              "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+              "name": "./src/index.js"
+            },
+            {
+              "id": "./node_modules/lodash.add/index.js",
+              "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/lodash.add/index.js",
+              "name": "./node_modules/lodash.add/index.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./node_modules/lodash.add/index.js",
+              "moduleIdentifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/lodash.add/index.js",
+              "module": "./node_modules/lodash.add/index.js",
+              "moduleName": "./node_modules/lodash.add/index.js",
+              "type": "cjs require",
+              "userRequest": "global",
+              "loc": "1:0-41"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || Function(\"return this\")() || (1, eval)(\"this\");\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n"
+        },
+        {
+          "id": "./src/index.js",
+          "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+          "name": "./src/index.js",
+          "index": 0,
+          "index2": 3,
+          "size": 238,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "main"
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./src/index.js",
+              "loc": "main"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 0,
+          "source": "var squarer = require('./squarer');\nvar add = require('lodash.add');\n\nconst five = 5;\n\n//This is a comment!\nconst doubler = (num) => {\n    return num*2;\n}\n\nconsole.log(doubler(five));\nconsole.log(squarer(five));\nconsole.log(add(five, 9));"
+        },
+        {
+          "id": "./src/squarer.js",
+          "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/squarer.js",
+          "name": "./src/squarer.js",
+          "index": 1,
+          "index2": 0,
+          "size": 74,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "main"
+          ],
+          "issuer": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+          "issuerId": "./src/index.js",
+          "issuerName": "./src/index.js",
+          "issuerPath": [
+            {
+              "id": "./src/index.js",
+              "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+              "name": "./src/index.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./src/index.js",
+              "moduleIdentifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "cjs require",
+              "userRequest": "./squarer",
+              "loc": "1:14-34"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "const squarer = (num) => {\n    return num*num\n}\n\nmodule.exports = squarer;"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "./src/index.js",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "./node_modules/lodash.add/index.js",
+      "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/lodash.add/index.js",
+      "name": "./node_modules/lodash.add/index.js",
+      "index": 2,
+      "index2": 2,
+      "size": 4859,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "main"
+      ],
+      "issuer": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+      "issuerId": "./src/index.js",
+      "issuerName": "./src/index.js",
+      "issuerPath": [
+        {
+          "id": "./src/index.js",
+          "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+          "name": "./src/index.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/index.js",
+          "moduleIdentifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "type": "cjs require",
+          "userRequest": "lodash.add",
+          "loc": "2:10-31"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "/**\n * lodash (Custom Build) <https://lodash.com/>\n * Build: `lodash modularize exports=\"npm\" -o ./`\n * Copyright jQuery Foundation and other contributors <https://jquery.org/>\n * Released under MIT license <https://lodash.com/license>\n * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>\n * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors\n */\n\n/** Used as references for various `Number` constants. */\nvar INFINITY = 1 / 0,\n    NAN = 0 / 0;\n\n/** `Object#toString` result references. */\nvar symbolTag = '[object Symbol]';\n\n/** Detect free variable `global` from Node.js. */\nvar freeGlobal = typeof global == 'object' && global && global.Object === Object && global;\n\n/** Detect free variable `self`. */\nvar freeSelf = typeof self == 'object' && self && self.Object === Object && self;\n\n/** Used as a reference to the global object. */\nvar root = freeGlobal || freeSelf || Function('return this')();\n\n/** Used for built-in method references. */\nvar objectProto = Object.prototype;\n\n/**\n * Used to resolve the\n * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)\n * of values.\n */\nvar objectToString = objectProto.toString;\n\n/** Built-in value references. */\nvar Symbol = root.Symbol;\n\n/** Used to convert symbols to primitives and strings. */\nvar symbolProto = Symbol ? Symbol.prototype : undefined,\n    symbolToString = symbolProto ? symbolProto.toString : undefined;\n\n/**\n * The base implementation of `_.toNumber` which doesn't ensure correct\n * conversions of binary, hexadecimal, or octal string values.\n *\n * @private\n * @param {*} value The value to process.\n * @returns {number} Returns the number.\n */\nfunction baseToNumber(value) {\n  if (typeof value == 'number') {\n    return value;\n  }\n  if (isSymbol(value)) {\n    return NAN;\n  }\n  return +value;\n}\n\n/**\n * The base implementation of `_.toString` which doesn't convert nullish\n * values to empty strings.\n *\n * @private\n * @param {*} value The value to process.\n * @returns {string} Returns the string.\n */\nfunction baseToString(value) {\n  // Exit early for strings to avoid a performance hit in some environments.\n  if (typeof value == 'string') {\n    return value;\n  }\n  if (isSymbol(value)) {\n    return symbolToString ? symbolToString.call(value) : '';\n  }\n  var result = (value + '');\n  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;\n}\n\n/**\n * Creates a function that performs a mathematical operation on two values.\n *\n * @private\n * @param {Function} operator The function to perform the operation.\n * @param {number} [defaultValue] The value used for `undefined` arguments.\n * @returns {Function} Returns the new mathematical operation function.\n */\nfunction createMathOperation(operator, defaultValue) {\n  return function(value, other) {\n    var result;\n    if (value === undefined && other === undefined) {\n      return defaultValue;\n    }\n    if (value !== undefined) {\n      result = value;\n    }\n    if (other !== undefined) {\n      if (result === undefined) {\n        return other;\n      }\n      if (typeof value == 'string' || typeof other == 'string') {\n        value = baseToString(value);\n        other = baseToString(other);\n      } else {\n        value = baseToNumber(value);\n        other = baseToNumber(other);\n      }\n      result = operator(value, other);\n    }\n    return result;\n  };\n}\n\n/**\n * Checks if `value` is object-like. A value is object-like if it's not `null`\n * and has a `typeof` result of \"object\".\n *\n * @static\n * @memberOf _\n * @since 4.0.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is object-like, else `false`.\n * @example\n *\n * _.isObjectLike({});\n * // => true\n *\n * _.isObjectLike([1, 2, 3]);\n * // => true\n *\n * _.isObjectLike(_.noop);\n * // => false\n *\n * _.isObjectLike(null);\n * // => false\n */\nfunction isObjectLike(value) {\n  return !!value && typeof value == 'object';\n}\n\n/**\n * Checks if `value` is classified as a `Symbol` primitive or object.\n *\n * @static\n * @memberOf _\n * @since 4.0.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.\n * @example\n *\n * _.isSymbol(Symbol.iterator);\n * // => true\n *\n * _.isSymbol('abc');\n * // => false\n */\nfunction isSymbol(value) {\n  return typeof value == 'symbol' ||\n    (isObjectLike(value) && objectToString.call(value) == symbolTag);\n}\n\n/**\n * Adds two numbers.\n *\n * @static\n * @memberOf _\n * @since 3.4.0\n * @category Math\n * @param {number} augend The first number in an addition.\n * @param {number} addend The second number in an addition.\n * @returns {number} Returns the total.\n * @example\n *\n * _.add(6, 4);\n * // => 10\n */\nvar add = createMathOperation(function(augend, addend) {\n  return augend + addend;\n}, 0);\n\nmodule.exports = add;\n"
+    },
+    {
+      "id": "./node_modules/webpack/buildin/global.js",
+      "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/webpack/buildin/global.js",
+      "name": "(webpack)/buildin/global.js",
+      "index": 3,
+      "index2": 1,
+      "size": 489,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "main"
+      ],
+      "issuer": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/lodash.add/index.js",
+      "issuerId": "./node_modules/lodash.add/index.js",
+      "issuerName": "./node_modules/lodash.add/index.js",
+      "issuerPath": [
+        {
+          "id": "./src/index.js",
+          "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+          "name": "./src/index.js"
+        },
+        {
+          "id": "./node_modules/lodash.add/index.js",
+          "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/lodash.add/index.js",
+          "name": "./node_modules/lodash.add/index.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./node_modules/lodash.add/index.js",
+          "moduleIdentifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/node_modules/lodash.add/index.js",
+          "module": "./node_modules/lodash.add/index.js",
+          "moduleName": "./node_modules/lodash.add/index.js",
+          "type": "cjs require",
+          "userRequest": "global",
+          "loc": "1:0-41"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || Function(\"return this\")() || (1, eval)(\"this\");\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n"
+    },
+    {
+      "id": "./src/index.js",
+      "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+      "name": "./src/index.js",
+      "index": 0,
+      "index2": 3,
+      "size": 238,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "main"
+      ],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./src/index.js",
+          "loc": "main"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 0,
+      "source": "var squarer = require('./squarer');\nvar add = require('lodash.add');\n\nconst five = 5;\n\n//This is a comment!\nconst doubler = (num) => {\n    return num*2;\n}\n\nconsole.log(doubler(five));\nconsole.log(squarer(five));\nconsole.log(add(five, 9));"
+    },
+    {
+      "id": "./src/squarer.js",
+      "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/squarer.js",
+      "name": "./src/squarer.js",
+      "index": 1,
+      "index2": 0,
+      "size": 74,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "main"
+      ],
+      "issuer": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+      "issuerId": "./src/index.js",
+      "issuerName": "./src/index.js",
+      "issuerPath": [
+        {
+          "id": "./src/index.js",
+          "identifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+          "name": "./src/index.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": "./src/index.js",
+          "moduleIdentifier": "/Users/fest/Desktop/Projects/FEDTT/webpack-tester/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "type": "cjs require",
+          "userRequest": "./squarer",
+          "loc": "1:14-34"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "const squarer = (num) => {\n    return num*num\n}\n\nmodule.exports = squarer;"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}
