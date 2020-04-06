@@ -8,7 +8,7 @@
     "build": "webpack",
     "stats": "webpack --json > stats.json",
     "start": "node build/index.bundle.js",
-    "bs"   : "npm run build && npm run start"
+    "bs": "npm run build && npm run start"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +16,7 @@
     "babel-minify-webpack-plugin": "^0.3.1",
     "ts-loader": "^4.3.1",
     "typescript": "^2.9.1",
-    "webpack": "^4.10.2",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.0.1"
   },
   "dependencies": {
